@@ -1,0 +1,935 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberSafe | Cybersecurity Learning Platform</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+:root {
+    --bg: #030b18;
+    --panel: #07172c;
+    --panel2: #0b203a;
+    --blue: #08aaff;
+    --cyan: #00e5ff;
+    --text: #f0f7ff;
+    --muted: #9bb1cb;
+    --border: #123454;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+}
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 245px;
+    background: #04101f;
+    border-right: 1px solid var(--border);
+    padding: 25px 18px;
+    position: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: white;
+    margin: 8px 10px 40px;
+}
+
+.logo span {
+    color: var(--cyan);
+}
+
+.logo small {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    margin-top: 5px;
+}
+
+.nav-title {
+    font-size: 11px;
+    color: #68819e;
+    letter-spacing: 2px;
+    margin: 15px 12px;
+}
+
+.nav button {
+    width: 100%;
+    padding: 14px;
+    text-align: left;
+    color: var(--muted);
+    background: transparent;
+    border-radius: 10px;
+    margin-bottom: 7px;
+    transition: .3s;
+}
+
+.nav button:hover,
+.nav button.active {
+    background: linear-gradient(90deg,#063c73,#07518b);
+    color: white;
+    box-shadow: 0 0 15px #008cff25;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 18px;
+    border-radius: 13px;
+}
+
+.sidebar-bottom h3 {
+    color: var(--cyan);
+    margin-bottom: 8px;
+}
+
+.sidebar-bottom p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* MAIN */
+
+.main {
+    margin-left: 245px;
+    width: calc(100% - 245px);
+}
+
+.topbar {
+    height: 78px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+    background: #04101fe8;
+}
+
+.topbar h3 {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.student {
+    color: var(--cyan);
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 30px;
+}
+
+.content {
+    padding: 28px 32px;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 335px;
+    background:
+    radial-gradient(circle at 80% 45%,#07549c66,transparent 35%),
+    linear-gradient(110deg,#06172d,#04152b 65%,#06284a);
+    border: 1px solid #07518c;
+    border-radius: 18px;
+    padding: 45px 38px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.hero::after {
+    content: "🛡️";
+    position: absolute;
+    right: 9%;
+    top: 45px;
+    font-size: 155px;
+    filter: drop-shadow(0 0 30px #00aaff);
+    opacity: .9;
+}
+
+.hero-text {
+    max-width: 570px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-text .tag {
+    color: var(--cyan);
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.hero h1 {
+    font-size: clamp(30px,4vw,43px);
+    margin: 18px 0;
+    line-height: 1.2;
+}
+
+.hero h1 span {
+    color: var(--cyan);
+}
+
+.hero p {
+    color: #b8cce4;
+    line-height: 1.8;
+    max-width: 470px;
+}
+
+.primary-btn {
+    background: linear-gradient(90deg,#009dff,#075cff);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 30px;
+    font-weight: 700;
+    margin-top: 24px;
+    box-shadow: 0 0 20px #008cff55;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* CARDS */
+
+.section-title {
+    margin: 30px 0 18px;
+    font-size: 19px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 16px;
+}
+
+.card {
+    background: linear-gradient(145deg,#091d36,#061326);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 23px;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--blue);
+    box-shadow: 0 5px 25px #008cff18;
+}
+
+.card-icon {
+    width: 52px;
+    height: 52px;
+    background: #0756a7;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 25px;
+    margin-bottom: 18px;
+}
+
+.card h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+    min-height: 42px;
+}
+
+.card button {
+    color: var(--cyan);
+    background: transparent;
+    margin-top: 18px;
+    font-weight: 600;
+}
+
+/* LOWER SECTION */
+
+.lower {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 23px;
+}
+
+.panel h3 {
+    margin-bottom: 20px;
+    color: #c9edff;
+}
+
+.progress-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.circle {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: conic-gradient(var(--cyan) 0deg,#123451 0deg);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.circle::before {
+    content: "";
+    position: absolute;
+    width: 88px;
+    height: 88px;
+    background: var(--panel);
+    border-radius: 50%;
+}
+
+.circle strong {
+    position: relative;
+    font-size: 22px;
+}
+
+.progress-details {
+    width: 100%;
+}
+
+.progress-details p {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 13px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.quick-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.quick-links button {
+    background: #091f38;
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 10px;
+    color: white;
+    text-align: left;
+}
+
+.quick-links button:hover {
+    border-color: var(--cyan);
+}
+
+/* PAGE CONTENT */
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.lesson {
+    margin-bottom: 14px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 13px;
+}
+
+.lesson p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+    margin: 10px 0;
+}
+
+.lesson button {
+    background: #0756a7;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 7px;
+    margin-top: 8px;
+}
+
+.lesson button:disabled {
+    background: #08765f;
+    cursor: default;
+}
+
+.tool-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 18px;
+}
+
+.tool-box input {
+    width: 100%;
+    padding: 13px;
+    margin: 14px 0;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #020c18;
+    color: white;
+}
+
+.result {
+    margin-top: 12px;
+    color: var(--cyan);
+    font-size: 14px;
+}
+
+.quiz-option {
+    display: block;
+    background: #0a203a;
+    border: 1px solid var(--border);
+    color: white;
+    padding: 14px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: left;
+    margin: 10px 0;
+}
+
+.quiz-option:hover {
+    border-color: var(--cyan);
+}
+
+.footer {
+    border-top: 1px solid var(--border);
+    padding: 22px 30px;
+    color: var(--muted);
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px) {
+    .cards { grid-template-columns: repeat(2,1fr); }
+}
+
+@media(max-width:700px) {
+    .sidebar {
+        width: 65px;
+        padding: 15px 7px;
+    }
+    .logo {
+        font-size: 0;
+        margin: 10px 5px 25px;
+    }
+    .logo::before {
+        content: "🛡️";
+        font-size: 28px;
+    }
+    .logo small,.nav-title,.nav button span,
+    .sidebar-bottom { display:none; }
+    .nav button { text-align:center; padding: 14px 4px; font-size: 19px; }
+    .main { margin-left:65px; width:calc(100% - 65px); }
+    .topbar { padding:0 14px; }
+    .content { padding:15px; }
+    .hero { padding:25px; }
+    .hero::after { opacity:.15; right:0; }
+    .cards { grid-template-columns:1fr; }
+    .lower { grid-template-columns:1fr; }
+    .footer { flex-direction:column; gap:10px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<aside class="sidebar">
+    <div class="logo">Cyber<span>Safe</span>
+        <small>LEARN • PROTECT • STAY SAFE</small>
+    </div>
+
+    <div class="nav-title">MENU</div>
+
+    <div class="nav">
+        <button class="active" onclick="showPage('home',this)">🏠 <span>Dashboard</span></button>
+        <button onclick="showPage('lessons',this)">📚 <span>My Lessons</span></button>
+        <button onclick="showPage('tools',this)">🛠️ <span>Security Tools</span></button>
+        <button onclick="showPage('quiz',this)">📝 <span>Quiz</span></button>
+        <button onclick="showPage('tips',this)">🛡️ <span>Safety Tips</span></button>
+        <button onclick="showPage('about',this)">ℹ️ <span>About</span></button>
+    </div>
+
+    <div class="sidebar-bottom">
+        <h3>Stay Protected!</h3>
+        <p>Learn something new every day and make your digital life safer.</p>
+    </div>
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+    <h3>Cybersecurity Learning Platform</h3>
+    <div class="student">👤 Student</div>
+</header>
+
+<div class="content">
+
+<!-- HOME PAGE -->
+<section class="page active" id="home">
+
+<div class="hero">
+    <div class="hero-text">
+        <div class="tag">WELCOME TO CYBERSAFE</div>
+        <h1>Learn Cybersecurity,<br>
+        <span>Build a Safer Tomorrow</span></h1>
+        <p>Simple lessons, practical knowledge and useful tools to help you stay safe in the digital world.</p>
+        <button class="primary-btn" onclick="showPage('lessons')">▶ Start Learning</button>
+    </div>
+</div>
+
+<h2 class="section-title">Explore Your Learning</h2>
+
+<div class="cards">
+    <div class="card">
+        <div class="card-icon">🛡️</div>
+        <h3>Cyber Basics</h3>
+        <p>Understand cybersecurity and its basic concepts.</p>
+        <button onclick="showPage('lessons')">Start Learning →</button>
+    </div>
+
+    <div class="card">
+        <div class="card-icon">🔐</div>
+        <h3>Online Safety</h3>
+        <p>Learn how to protect your accounts and personal data.</p>
+        <button onclick="showPage('tips')">Explore →</button>
+    </div>
+
+    <div class="card">
+        <div class="card-icon">💻</div>
+        <h3>Security Tools</h3>
+        <p>Explore simple educational security tools.</p>
+        <button onclick="showPage('tools')">Explore →</button>
+    </div>
+
+    <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>Test Your Skills</h3>
+        <p>Check your cybersecurity knowledge with a quiz.</p>
+        <button onclick="showPage('quiz')">Take Quiz →</button>
+    </div>
+</div>
+
+<div class="lower">
+    <div class="panel">
+        <h3>📊 Your Progress</h3>
+        <div class="progress-row">
+            <div class="circle" id="progressCircle">
+                <strong id="progressPercent">0%</strong>
+            </div>
+            <div class="progress-details">
+                <p>Completed Lessons <b id="lessonCount">0/4</b></p>
+                <p>Quiz Status <b id="quizStatus">Not attempted</b></p>
+                <p>Learning Level <b id="level">Beginner</b></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>⚡ Quick Links</h3>
+        <div class="quick-links">
+            <button onclick="showPage('lessons')">📚 Lessons →</button>
+            <button onclick="showPage('tools')">🛠️ Tools →</button>
+            <button onclick="showPage('quiz')">📝 Quiz →</button>
+            <button onclick="showPage('tips')">🛡️ Safety Tips →</button>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- LESSONS -->
+<section class="page" id="lessons">
+    <h2 class="section-title">📚 Cybersecurity Lessons</h2>
+    <p style="color:var(--muted);margin-bottom:20px">Learn basic concepts one step at a time.</p>
+
+    <div id="lessonList"></div>
+</section>
+
+<!-- TOOLS -->
+<section class="page" id="tools">
+    <h2 class="section-title">🛠️ Security Tools</h2>
+
+    <div class="tool-box">
+        <h3>🔑 Sample Password Checker</h3>
+        <p style="color:var(--muted);margin-top:10px">Educational demo: Try a sample password to learn about password strength. Never enter your real password here.</p>
+        <input type="text" id="passwordInput" placeholder="Enter a sample password">
+        <button class="primary-btn" style="margin-top:0" onclick="checkPassword()">Check Strength</button>
+        <div class="result" id="passwordResult"></div>
+    </div>
+
+    <div class="tool-box">
+        <h3>🌐 Website Safety Checklist</h3>
+        <p style="color:var(--muted);line-height:1.9;margin-top:10px">
+        ✔ Check the website address carefully.<br>
+        ✔ Look for HTTPS (but remember it does not guarantee trustworthiness).<br>
+        ✔ Avoid suspicious links and unexpected downloads.<br>
+        ✔ Never share passwords or verification codes.<br>
+        ✔ Use trusted websites and official apps.
+        </p>
+    </div>
+</section>
+
+<!-- QUIZ -->
+<section class="page" id="quiz">
+    <h2 class="section-title">📝 Cybersecurity Quiz</h2>
+
+    <div class="tool-box">
+        <div id="quizArea">
+            <h3>Test Your Knowledge!</h3>
+            <p style="color:var(--muted);margin:12px 0">Answer 5 simple cybersecurity questions.</p>
+            <button class="primary-btn" onclick="startQuiz()">Start Quiz →</button>
+        </div>
+    </div>
+</section>
+
+<!-- TIPS -->
+<section class="page" id="tips">
+    <h2 class="section-title">🛡️ Cyber Safety Tips</h2>
+
+    <div class="lesson">
+        <h3>🔐 1. Use Strong Passwords</h3>
+        <p>Create long, unique passwords for your accounts. A password manager can help you manage them.</p>
+    </div>
+
+    <div class="lesson">
+        <h3>📧 2. Avoid Phishing</h3>
+        <p>Do not trust unexpected messages asking for passwords, money or personal information. Verify the sender independently.</p>
+    </div>
+
+    <div class="lesson">
+        <h3>🔄 3. Update Your Software</h3>
+        <p>Keep your operating system, browser and applications updated to receive security fixes.</p>
+    </div>
+
+    <div class="lesson">
+        <h3>🔒 4. Enable Two-Factor Authentication</h3>
+        <p>Use an additional verification step to make your accounts more secure.</p>
+    </div>
+
+    <div class="lesson">
+        <h3>📶 5. Be Careful on Public Wi-Fi</h3>
+        <p>Avoid sensitive activities on untrusted networks and never ignore browser security warnings.</p>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="page" id="about">
+    <h2 class="section-title">ℹ️ About CyberSafe</h2>
+    <div class="tool-box">
+        <h2 style="color:var(--cyan);margin-bottom:15px">CyberSafe 🛡️</h2>
+        <p style="color:var(--muted);line-height:2">
+        CyberSafe is an educational cybersecurity learning platform designed to teach beginners about digital security.
+
+        <br><br>
+        <b style="color:white">Our Mission:</b><br>
+        To make cybersecurity easy to understand and help people develop safe online habits.
+
+        <br><br>
+        <b style="color:white">What You Can Learn:</b><br>
+        • Cybersecurity Fundamentals<br>
+        • Phishing Awareness<br>
+        • Password Security<br>
+        • Malware Awareness<br>
+        • Online Safety
+        <br><br>
+        <b style="color:white">Technology:</b><br>
+        HTML, CSS and JavaScript.
+        </p>
+    </div>
+</section>
+
+</div>
+
+<footer class="footer">
+    <b style="color:var(--cyan)">CyberSafe | Learn • Protect • Stay Safe</b>
+    <span>© 2026 CyberSafe. Educational Project.</span>
+</footer>
+
+</main>
+</div>
+
+<script>
+
+// NAVIGATION
+function showPage(page,button) {
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById(page).classList.add('active');
+
+    document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+    if(button) button.classList.add('active');
+
+    window.scrollTo(0,0);
+}
+
+// LESSON DATA
+const lessons = [
+    {
+        title:"Introduction to Cybersecurity",
+        icon:"🛡️",
+        description:"Cybersecurity means protecting computers, networks and information from digital threats.",
+        example:"Example: Using security updates and antivirus software helps protect your computer."
+    },
+    {
+        title:"Phishing Awareness",
+        icon:"📧",
+        description:"Phishing is a trick where someone sends fake messages to steal personal information.",
+        example:"Example: A fake bank email asking you to verify your password."
+    },
+    {
+        title:"Password Security",
+        icon:"🔐",
+        description:"Password security means creating and protecting strong, unique passwords.",
+        example:"Example: Use a different password for each important account."
+    },
+    {
+        title:"Malware Awareness",
+        icon:"🦠",
+        description:"Malware is harmful software that can damage devices or access information without permission.",
+        example:"Example: A suspicious attachment may contain harmful software."
+    }
+];
+
+let completed = JSON.parse(localStorage.getItem("cyberLessons") || "[]");
+
+function renderLessons() {
+    const container = document.getElementById("lessonList");
+    container.innerHTML = "";
+
+    lessons.forEach((lesson,index)=>{
+        const done = completed.includes(index);
+
+        container.innerHTML += `
+        <div class="lesson">
+            <h3>${lesson.icon} ${lesson.title}</h3>
+            <p>${lesson.description}</p>
+            <p><b style="color:var(--cyan)">Real-world example:</b> ${lesson.example}</p>
+            <button ${done?"disabled":""} onclick="completeLesson(${index})">
+                ${done?"✓ Completed":"Mark as Completed"}
+            </button>
+        </div>`;
+    });
+}
+
+function completeLesson(index) {
+    if(!completed.includes(index)) {
+        completed.push(index);
+        localStorage.setItem("cyberLessons",JSON.stringify(completed));
+    }
+
+    renderLessons();
+    updateProgress();
+}
+
+function updateProgress() {
+    const percent = Math.round(completed.length / lessons.length * 100);
+
+    document.getElementById("progressPercent").innerText = percent+"%";
+    document.getElementById("lessonCount").innerText = completed.length+"/4";
+    document.getElementById("progressCircle").style.background =
+    `conic-gradient(var(--cyan) ${percent*3.6}deg,#123451 0deg)`;
+
+    document.getElementById("level").innerText =
+    completed.length===4?"Learner":"Beginner";
+
+    document.getElementById("quizStatus").innerText =
+    localStorage.getItem("cyberQuizPassed")==="true"?"Passed":"Not attempted";
+}
+
+// PASSWORD DEMO CHECKER
+function checkPassword() {
+    const value = document.getElementById("passwordInput").value;
+    const result = document.getElementById("passwordResult");
+
+    if(!value) {
+        result.innerText = "Please enter a sample password.";
+        return;
+    }
+
+    let score=0;
+
+    if(value.length>=12) score++;
+    if(/[A-Z]/.test(value)) score++;
+    if(/[a-z]/.test(value)) score++;
+    if(/[0-9]/.test(value)) score++;
+    if(/[^A-Za-z0-9]/.test(value)) score++;
+
+    if(score<=2) result.innerText="⚠️ Weak sample password. Try a longer and more varied one.";
+    else if(score<=3) result.innerText="🟡 Moderate sample password. More variety may help.";
+    else result.innerText="🟢 Good sample password pattern!";
+
+    result.innerText += " This is only a basic educational check.";
+}
+
+// QUIZ
+const questions = [
+    {
+        q:"What is cybersecurity?",
+        options:["Protecting digital systems","Playing games","Editing photos","Watching videos"],
+        answer:0
+    },
+    {
+        q:"What is phishing?",
+        options:["A computer game","A trick to steal information","A software update","A search engine"],
+        answer:1
+    },
+    {
+        q:"Which password habit is safer?",
+        options:["Use 123456","Share passwords","Use unique strong passwords","Use your name"],
+        answer:2
+    },
+    {
+        q:"What is malware?",
+        options:["A helpful website","A harmful software","A computer screen","A keyboard"],
+        answer:1
+    },
+    {
+        q:"What should you do with a suspicious email?",
+        options:["Click every link","Share it with friends","Verify it and avoid suspicious links","Send your password"],
+        answer:2
+    }
+];
+
+let currentQuestion=0;
+let score=0;
+let selected=false;
+
+function startQuiz() {
+    currentQuestion=0;
+    score=0;
+    selected=false;
+    showQuestion();
+}
+
+function showQuestion() {
+    const q=questions[currentQuestion];
+
+    document.getElementById("quizArea").innerHTML=`
+        <p style="color:var(--cyan)">Question ${currentQuestion+1} of ${questions.length}</p>
+        <h3 style="margin:18px 0">${q.q}</h3>
+        <div id="options"></div>
+        <p id="quizFeedback" class="result"></p>
+        <button class="primary-btn" id="nextBtn" onclick="nextQuestion()" disabled>
+            ${currentQuestion===questions.length-1?"See Result":"Next Question →"}
+        </button>
+    `;
+
+    q.options.forEach((option,index)=>{
+        document.getElementById("options").innerHTML+=`
+        <button class="quiz-option" onclick="selectAnswer(${index},this)">
+            ${option}
+        </button>`;
+    });
+}
+
+function selectAnswer(index,button) {
+    if(selected) return;
+    selected=true;
+
+    if(index===questions[currentQuestion].answer) {
+        score++;
+        document.getElementById("quizFeedback").innerText="✓ Correct answer!";
+    } else {
+        document.getElementById("quizFeedback").innerText=
+        "✗ Not quite. Correct answer: "+questions[currentQuestion].options[questions[currentQuestion].answer];
+    }
+
+    document.querySelectorAll(".quiz-option").forEach(b=>b.disabled=true);
+    document.getElementById("nextBtn").disabled=false;
+}
+
+function nextQuestion() {
+    if(!selected) return;
+
+    currentQuestion++;
+    selected=false;
+
+    if(currentQuestion<questions.length) {
+        showQuestion();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+    const percentage=score/questions.length*100;
+    const passed=percentage>=60;
+
+    if(passed) localStorage.setItem("cyberQuizPassed","true");
+
+    updateProgress();
+
+    document.getElementById("quizArea").innerHTML=`
+        <h2 style="color:var(--cyan)">Quiz Completed! 🎉</h2>
+        <h1 style="font-size:48px;margin:20px 0">${score}/${questions.length}</h1>
+        <h3>${percentage}% Score</h3>
+        <p style="color:var(--muted);margin:15px 0">
+        ${passed?"Great work! You passed the quiz.":"Keep learning and try again!"}
+        </p>
+        <button class="primary-btn" onclick="startQuiz()">Try Again</button>
+    `;
+}
+
+// INITIALIZE
+renderLessons();
+updateProgress();
+
+</script>
+</body>
+</html>
